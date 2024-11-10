@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
+import Link from 'next/link'
 
 // Extended mock data for 25 donators
 const donators = Array.from({ length: 25 }, (_, i) => ({
@@ -102,11 +103,11 @@ export default function Leaderboard() {
                                         </p>
                                         <p className="flex items-center text-muted-foreground">
                                             <Phone className="h-5 w-5 mr-3" />
-                                            <a href={`tel:${donator.phone}`} className="hover:underline">{donator.phone}</a>
+                                            <Link href={`tel:${donator.phone}`} className="hover:underline">{donator.phone}</Link>
                                         </p>
                                         <p className="flex items-center text-muted-foreground">
                                             <Mail className="h-5 w-5 mr-3" />
-                                            <a href={`mailto:${donator.email}`} className="hover:underline">{donator.email}</a>
+                                            <Link href={`mailto:${donator.email}`} className="hover:underline">{donator.email}</Link>
                                         </p>
                                     </div>
                                     <p className="text-sm text-primary font-medium">

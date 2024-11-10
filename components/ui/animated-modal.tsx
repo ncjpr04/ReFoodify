@@ -51,7 +51,7 @@ export const ModalTrigger = ({
     <button
       className={cn(
         "px-4 py-2 rounded-md text-black dark:text-white text-center relative overflow-hidden",
-        className || ''
+        className || ""
       )}
       onClick={() => setOpen(true)}
     >
@@ -109,7 +109,7 @@ export const ModalBody = ({
             ref={modalRef}
             tabIndex={-1} // Make modal focusable
             className={cn(
-              "min-h-[70%] max-h-[90%] md:max-w-[60%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden mx-auto", // Increased size
+              "min-h-[70%] max-h-[90%] md:max-w-[60%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden mx-auto",
               className || ""
             )}
             initial={{ opacity: 0, scale: 0.5, rotateX: 40, y: 40 }}
@@ -165,7 +165,7 @@ const Overlay = ({ className }: { className?: string }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, backdropFilter: "blur(10px)" }}
       exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-      className={`fixed inset-0 h-full w-full bg-black bg-opacity-50 z-50 ${className}`}
+      className={`fixed inset-0 h-full w-full bg-black bg-opacity-50 z-50 ${className || ""}`}
     ></motion.div>
   );
 };
@@ -198,15 +198,13 @@ const CloseIcon = () => {
 };
 
 // Hook to detect clicks outside of a component.
-// Add it in a separate file, I've added here for simplicity
 export const useOutsideClick = (
   ref: React.RefObject<HTMLDivElement>,
-  callback: Function
+  callback: (event: MouseEvent | TouchEvent) => void
 ) => {
   useEffect(() => {
-    const listener = (event: any) => {
-      // DO NOTHING if the element being clicked is the target element or their children
-      if (!ref.current || ref.current.contains(event.target)) {
+    const listener = (event: MouseEvent | TouchEvent) => {
+      if (!ref.current || ref.current.contains(event.target as Node)) {
         return;
       }
       callback(event);

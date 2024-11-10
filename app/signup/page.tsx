@@ -34,7 +34,7 @@ export default function SignupPage() {
   };
 
   const validateField = (name: string, value: string) => {
-    let newErrors = { ...errors };
+    const newErrors = { ...errors };
     switch (name) {
       case 'firstName':
       case 'lastName':
@@ -85,21 +85,23 @@ export default function SignupPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newErrors: Record<string, string> = {};
+  
+    // Validate each field in formData and update the errors state
     Object.keys(formData).forEach(key => validateField(key, formData[key as keyof typeof formData]));
-
+  
+    // Only proceed if there are no errors
     if (Object.keys(errors).length === 0) {
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
         const user = userCredential.user;
-
+  
         await setDoc(doc(db, "users", user.uid), {
           firstName: formData.firstName,
           lastName: formData.lastName,
           email: formData.email,
         });
         localStorage.setItem('userName', formData.firstName); // Store first name
-
+  
         router.push('/welcome');
       } catch (error) {
         console.error("Error signing up:", error);
@@ -107,6 +109,7 @@ export default function SignupPage() {
       }
     }
   };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">

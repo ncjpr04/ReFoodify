@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { AlertCircle, CheckCircle } from 'lucide-react'
-import { auth, db } from '../firebase/config';
+import { db } from '../firebase/config';
 import { collection, addDoc } from 'firebase/firestore'
 
 export default function ContactUs() {
@@ -62,7 +62,7 @@ export default function ContactUs() {
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>Contact Us</CardTitle>
-          <CardDescription>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</CardDescription>
+          <CardDescription>We&apos;re here to help and love to hear from you. Send us a message and we&apos;ll respond as soon as possible.</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">

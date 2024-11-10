@@ -31,7 +31,7 @@ const WelcomePage = () => {
         Welcome{userName ? `, ${userName}!` : '!'}
       </h1>
       <p className="mt-4 text-lg text-gray-600">
-        We're glad to have you here. Explore and make the most of our platform!
+        We&apos;re glad to have you here. Explore and make the most of our platform!
       </p>
       <button
         onClick={handleLogout}

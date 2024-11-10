@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import Image from 'next/image'
 
 interface ImageSliderProps {
   images?: string[] // Changed from string to string[]
@@ -49,11 +50,13 @@ export default function Component({
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {images.map((src, index) => (
-            <img
+            <Image
               key={index}
               src={src}
               alt={`Banner ${index + 1}`}
               className="w-[100%] object-cover h-auto"
+              width={1000} height={500} 
+              // WIP
             />
           ))}
         </div>

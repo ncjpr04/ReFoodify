@@ -1,8 +1,9 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import { Link as ScrollLink } from "react-scroll";
+import Image from "next/image";
 
 const menuLinks = [
   { text: "Home", to: "home" },
@@ -14,20 +15,20 @@ const menuLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
-  let lastScrollY = window.pageYOffset;
+  const lastScrollY = useRef(0); // Store lastScrollY in a ref
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const handleScroll = () => {
-    if (window.pageYOffset > lastScrollY) {
+    if (window.scrollY > lastScrollY.current) {
       setShowNavbar(false);
       setIsOpen(false);
     } else {
       setShowNavbar(true);
     }
-    lastScrollY = window.pageYOffset;
+    lastScrollY.current = window.scrollY;
   };
 
   useEffect(() => {
@@ -52,22 +53,23 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 py-3 transition-all duration-300 ease-out-expo transform ${
-        showNavbar ? "translate-y-0 scale-100" : "-translate-y-full scale-90"
-      }`}
+      className={`fixed top-0 left-0 w-full z-50 py-3 transition-all duration-300 ease-out-expo transform ${showNavbar ? "translate-y-0 scale-100" : "-translate-y-full scale-90"
+        }`}
     >
       <div className="sm:max-w-full lg:max-w-fit duration-300 ease-in-out bg-[#000000d7] border-[#000000] border-[1px] backdrop-blur-sm rounded-full lg:hover:shadow-md mx-auto flex justify-between w-5/6 px-10 py-3">
         <div className="flex items-center gap-16">
           <div>
-            <a href="/" className="flex gap-1 font-bold text-gray-700 items-center">
+            <Link href="/" className="flex gap-1 font-bold text-gray-700 items-center">
               <span className="h-7 text-primary flex justify-center items-center overflow-hidden">
-                <img
-                  src="https://github.com/ncjpr04/TechComets/blob/main/logo4.png?raw=true"
+                <Image
+                  src="https://raw.githubusercontent.com/ncjpr04/TechComets/refs/heads/main/logo4.png"
                   className="w-7"
                   alt="Logo"
+                  width={1000}
+                  height={1000}
                 />
               </span>
-            </a>
+            </Link>
           </div>
 
           <div className="hidden lg:flex gap-8 text-[#fffdfd] font-bold">
@@ -116,11 +118,10 @@ const Navbar = () => {
 
       <div className="flex justify-center my-3 mx-10">
         <div
-          className={`lg:hidden overflow-hidden flex items-center rounded-3xl flex-col gap-12 ${
-            !isOpen
+          className={`lg:hidden overflow-hidden flex items-center rounded-3xl flex-col gap-12 ${!isOpen
               ? "h-0"
               : "h-fit fixed z-40 w-full bg-[#000000d7] border-[#000000] border-[1px] ease-in-out origin-top duration-300 backdrop-blur-md max-w-xl shadow-md shadow-[#000000d2]"
-          }`}
+            }`}
         >
           <div className="px-8 overflow-hidden">
             <div className="flex flex-col py-2 items-center font-bold tracking-wider">

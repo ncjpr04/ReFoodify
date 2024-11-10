@@ -6,13 +6,13 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from 'next/link'
 import Reviews from './reviews'
-import { Modal, ModalBody, ModalContent, ModalTrigger, ModalFooter } from './ui/animated-modal'
+import { Modal, ModalBody, ModalContent, ModalTrigger } from './ui/animated-modal'
 import Slider from './image-slider'
-import { ArrowRight, Search, Utensils, Truck, Recycle, Clock, MapPin, Award } from 'lucide-react'
+import {Search, Truck, Recycle, Clock, MapPin, Award } from 'lucide-react'
 import { useInView } from 'react-intersection-observer';
 import CountUp from 'react-countup';
 import Leaderboard from './leaderboard'
-
+import Image from 'next/image'
 export function LandingPageComponent() {
   const [email, setEmail] = useState('')
 
@@ -122,7 +122,8 @@ export function LandingPageComponent() {
         {/* <Slider /> */}
 
         <section id="how-it-works" className="w-full flex-col gap-10 flex justify-center items-center">
-          <img src="https://raw.githubusercontent.com/ncjpr04/TechComets/refs/heads/main/chart2.jpg" className='w-fit' />
+          <Image src="https://raw.githubusercontent.com/ncjpr04/TechComets/refs/heads/main/chart2.jpg"  alt='chart' className='w-fit' height={1000} width={1000} />
+          {/* WIP */}
           <div className="container px-4 md:px-6 gap-10 flex flex-col items-center justify-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center">How It Works</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -148,7 +149,8 @@ export function LandingPageComponent() {
                 </CardContent>
               </Card>
             </div>
-            <img src="https://raw.githubusercontent.com/ncjpr04/TechComets/refs/heads/main/chart1.jpg" alt="" />
+           {/* WIP */}
+            <Image src="https://raw.githubusercontent.com/ncjpr04/TechComets/refs/heads/main/chart1.jpg" alt="chart" width={1000} height={1000} />
           </div>
         </section>
         <Leaderboard/>
@@ -231,7 +233,7 @@ export function LandingPageComponent() {
               <div className="flex flex-col items-center space-y-4 text-center">
                 <Recycle className="h-10 w-10 text-green-500" />
                 <h3 className="font-bold text-lg">Composting Integration</h3>
-                <p className="text-base text-gray-500">Ensure food that can't be used goes to compost, not landfill.</p>
+                <p className="text-base text-gray-500">Ensure food that can&apos;t be used goes to compost, not landfill.</p>
               </div>
               <div className="flex flex-col items-center space-y-4 text-center">
                 <Award className="h-10 w-10 text-green-500" />
